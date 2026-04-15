@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 void MostrarPersonas(char *p[]);
+void BuscarNombre(char *p[], int num);
 int main()
 {
     char *p[5], buff[50];
@@ -12,7 +13,8 @@ int main()
         p[i] = (char *)malloc(sizeof(char) * (strlen(buff) + 1));
         strcpy(p[i], buff);
     }
-     MostrarPersonas(p);
+    MostrarPersonas(p);
+     BuscarNombre( p,  20);
     return 0;
 }
 void MostrarPersonas(char *p[])
@@ -21,4 +23,17 @@ void MostrarPersonas(char *p[])
     {
         puts(p[i]);
     }
+}
+
+void BuscarNombre(char *p[], int num)
+{
+    if (p[num]!=NULL)
+    {
+        printf("El nombre solicitao es: ");
+        puts(p[num]);
+    }else
+    {
+        printf("Nombre invalido");
+    }
+    
 }

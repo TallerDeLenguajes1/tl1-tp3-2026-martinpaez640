@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 void MostrarPersonas(char *p[]);
+void BuscarNombre(char *p[], int num);
 int main()
 {
     char *p[5], buff[50];
@@ -13,6 +14,8 @@ int main()
         strcpy(p[i], buff);
     }
     MostrarPersonas(p);
+     BuscarNombre( p,  20);
+    MostrarPersonas(p);
 
     return 0;
 }
@@ -23,7 +26,7 @@ void MostrarPersonas(char *p[])
         puts(p[i]);
     }
 }
-int BuscarNombre(char *p[])
+int BuscaNombrePorPalabra(char *p[])
 {
     char aux[50];
     printf("Ingrese el nombre que decea buscar: ");
@@ -36,4 +39,17 @@ int BuscarNombre(char *p[])
         }
     }
     return -1;
+}
+
+void BuscaNombrePorId(char *p[], int num)
+{
+    if (p[num]!=NULL)
+    {
+        printf("El nombre solicitao es: ");
+        puts(p[num]);
+    }else
+    {
+        printf("Nombre invalido");
+    }
+    
 }

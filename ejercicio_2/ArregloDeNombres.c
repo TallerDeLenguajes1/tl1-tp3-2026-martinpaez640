@@ -12,7 +12,8 @@ int main()
         p[i] = (char *)malloc(sizeof(char) * (strlen(buff) + 1));
         strcpy(p[i], buff);
     }
-     MostrarPersonas(p);
+    MostrarPersonas(p);
+
     return 0;
 }
 void MostrarPersonas(char *p[])
@@ -21,4 +22,18 @@ void MostrarPersonas(char *p[])
     {
         puts(p[i]);
     }
+}
+int BuscarNombre(char *p[])
+{
+    char aux[50];
+    printf("Ingrese el nombre que decea buscar: ");
+    gets(aux);
+    for (int i = 0; i < 5; i++)
+    {
+        if (strstr(p[i], aux) != NULL)
+        {
+            return i;
+        }
+    }
+    return -1;
 }

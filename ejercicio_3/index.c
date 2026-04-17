@@ -16,12 +16,13 @@ typedef struct Cliente
     Producto *Productos;         // El tamaño de este arreglo depende de la variable                  //  “CantidadProductosAPedir”
 } Cliente;
 float costoTotal(Producto p);
+void mostrar(Cliente *p, float total);
 int main()
 {
-
     char *TiposProductos[] = {"Galletas", "Snack", "Cigarrillos", "Caramelos", "Bebidas"}, buff[50];
 
     int cant = 0;
+    float total = 0;
     printf("Ingrese la cantidad de Cliente: ");
     scanf("%d", &cant);
     Cliente *clientes = (Cliente *)malloc(sizeof(Cliente) * (size_t)cant);
@@ -39,13 +40,32 @@ int main()
         {
             clientes[i].Productos[d].ProductoID = d;
             clientes[i].Productos[d].Cantidad = 1 + rand() % 10;
-            clientes[i].Productos[d].TipoProducto = TiposProductos[0 + rand() % 4];
+            clientes[i].Productos[d].TipoProducto = TiposProductos[0 + rand() % 5];
             clientes[i].Productos[d].PrecioUnitario = (float)(10 + rand() % 91);
-            printf("\nLa cantidad total es: %f", costoTotal(clientes[i].Productos[d]));
+            total += costoTotal(clientes[i].Productos[d]);
         }
+        mostrar(&clientes[i], total);
+        total = 0;
     }
 
     return 0;
+}
+void mostrar(Cliente *p, float total)
+{
+
+    printf("\nId del cliente %d", p->ClienteID);
+    printf("\nNombre del cliente: ");
+    puts(p->NombreCliente);
+    printf("\nCantidad de productos el cliente: %d", p->CantidadProductosAPedir);
+    for (int i = 0; i < p->CantidadProductosAPedir; i++)
+    {
+        printf("\nProducto ID %d", p->Productos[i].ProductoID);
+        printf("\nCantidad de productos: %d", p->Productos[i].Cantidad);
+        printf("\nPrecio unitario del producto: %f", p->Productos[i].PrecioUnitario);
+        printf("\nNombre del producto: ");
+        puts(p->Productos[i].TipoProducto);
+    }
+    printf("Total a pagar del cliente: %f", total);
 }
 float costoTotal(Producto p)
 {

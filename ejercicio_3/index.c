@@ -17,6 +17,7 @@ typedef struct Cliente
 } Cliente;
 float costoTotal(Producto p);
 void mostrar(Cliente *p, float total);
+void liberar(Cliente *p, int cant);
 int main()
 {
     char *TiposProductos[] = {"Galletas", "Snack", "Cigarrillos", "Caramelos", "Bebidas"}, buff[50];
@@ -47,12 +48,19 @@ int main()
         mostrar(&clientes[i], total);
         total = 0;
     }
-
+    liberar(clientes, cant);
     return 0;
+}
+void liberar(Cliente *p, int cant)
+{
+    for (int i = 0; i < cant; i++)
+    {
+        free(p[i].Productos);
+    }
+    free(p);
 }
 void mostrar(Cliente *p, float total)
 {
-
     printf("\nId del cliente %d", p->ClienteID);
     printf("\nNombre del cliente: ");
     puts(p->NombreCliente);
